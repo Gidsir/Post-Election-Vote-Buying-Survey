@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post-Election Vote-Buying Assessment</title>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1b0230;
+            color: #333;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .survey-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+
+        .logo-img {
+            width: 90%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        h1 {
+            color: #1a2533;
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 40px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #020f25;
+        }
+
+        select,
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #a4c6eb;
+            border-radius: 10px;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.5s;
+        }
+
+        select:focus,
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #3182ce;
+            box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.2);
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        /* Conditional Sections */
+        .hidden {
+            display: none;
+        }
+
+        #conditional-block, #conditional-vote-followup {
+            border-left: 3px solid #3182ce;
+            padding-left: 20px;
+            margin-top: 20px;
+            background-color: #f7fafc;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        #other-reason-text, #other-measure-text {
+            margin-top: 10px;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #3182ce;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2b6cb0;
+        }
+
+        .submit-btn:disabled {
+            background-color: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        /* Status Message Styling */
+        #status-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background-color: #c6f6d5;
+            color: #2f855a;
+        }
+        .status-error {
+            background-color: #fed7d7;
+            color: #c53030;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="survey-container">
+        <div class="header">
+
+            <!-- FINAL: Your Logo + Placeholder -->
+            <div class="logo-wrapper">
+                <img src="Picture1-removebg-preview.png" class="logo-img" alt="KDI Logo">
+            </div>
+
+            <h1>Anambra 2025 Post-Election Vote-Buying Assessment</h1>
+        </div>
+
+        <form id="surveyForm">
+            <!-- Question 1: Consent -->
+            <div class="form-group">
+                <label>1. Do you give your consent to participate in this survey?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="consent" value="Yes" required> Yes</label>
+                    <label><input type="radio" name="consent" value="No"> No</label>
+                </div>
+            </div>
+
+            <!-- NEW: Email Address Field -->
+            <div class="form-group">
+                <label for="email">2. Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+
+            <!-- Question 2: Voted (now #3) -->
+            <div class="form-group">
+                <label>3. Did you vote in the last election?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="voted" value="Yes" required> Yes</label>
+                    <label><input type="radio" name="voted" value="No"> No</label>
+                </div>
+            </div>
+
+            <!-- Question 5: ONDO LGA (now #4) -->
+<div class="form-group">
+                <label for="lga">4. Local Government Area (LGA)</label>
+                <select id="lga" name="lga" required>
+                    <option value="" disabled selected>Select your LGA</option>
+                    <option value="Aguata">Aguata</option>
+                    <option value="Anambra East">Anambra East</option>
+                    <option value="Anambra West">Anambra West</option>
+                    <option value="Anaocha">Anaocha</option>
+                    <option value="Awka North">Awka North</option>
+                    <option value="Awka South">Awka South</option>
+                    <option value="Ayamelum">Ayamelum</option>
+                    <option value="Dunukofia">Dunukofia</option>
+                    <option value="Ekwusigo">Ekwusigo</option>
+                    <option value="Idemili North">Idemili North</option>
+                    <option value="Idemili South">Idemili South</option>
+                    <option value="Ihiala">Ihiala</option>
+                    <option value="Njikoka">Njikoka</option>
+                    <option value="Nnewi North">Nnewi North</option>
+                    <option value="Nnewi South">Nnewi South</option>
+                    <option value="Ogbaru">Ogbaru</option>
+                    <option value="Onitsha North">Onitsha North</option>
+                    <option value="Onitsha South">Onitsha South</option>
+                    <option value="Orumba North">Orumba North</option>
+                    <option value="Orumba South">Orumba South</option>
+                    <option value="Oyi">Oyi</option>
+                </select>
+            </div>   
+
+            <!-- Question 6: Age (now #5) -->
+            <div class="form-group">
+                <label for="age">5. Age</label>
+                <select id="age" name="age" required>
+                    <option value="" disabled selected>Select your age range</option>
+                    <option value="18-24">18 – 24</option>
+                    <option value="25-34">25 – 34</option>
+                    <option value="35-44">35 – 44</option>
+                    <option value="45-54">45 – 54</option>
+                    <option value="55+">55 and above</option>
+                </select>
+            </div>
+
+            <!-- Question 7: Gender (now #6) -->
+            <div class="form-group">
+                <label>6. Gender</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="Male"> Male</label>
+                    <label><input type="radio" name="gender" value="Female"> Female</label>
+                </div>
+            </div>
+
+            <!-- Question 8: Education (now #7) -->
+            <div class="form-group">
+                <label for="education">7. Level of Education</label>
+                <select id="education" name="education">
+                    <option value="" disabled selected>Select highest level</option>
+                    <option value="No formal education">No formal education</option>
+                    <option value="Primary">Primary</option>
+                    <option value="Secondary">Secondary</option>
+                    <option value="Tertiary">Tertiary</option>
+                </select>
+            </div>
+
+            <!-- Question 9: Employment (now #8) -->
+            <div class="form-group">
+                <label for="employment">8. Employment Status</label>
+                <select id="employment" name="employment">
+                    <option value="" disabled selected>Select your status</option>
+                    <option value="Employed">Employed</option>
+                    <option value="Self-employed">Self-employed</option>
+                    <option value="Unemployed">Unemployed</option>
+                    <option value="Student">Student</option>
+                    <option value="Retired">Retired</option>
+                </select>
+            </div>
+
+            <!-- Question 10: Approached (now #9) -->
+            <div class="form-group">
+                <label>9. Before or during the election, were you approached with an offer of money, gifts, or other incentives in exchange for your vote?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="approached" value="Yes"> Yes</label>
+                    <label><input type="radio" name="approached" value="No"> No</label>
+                </div>
+            </div>
+
+            <!-- CONDITIONAL BLOCK STARTS HERE -->
+            <div id="conditional-block" class="hidden">
+
+                <!-- Question 11: Inducement Type (now #10) -->
+                <div class="form-group">
+                    <label>10. If yes, what type of inducement were you offered? (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="inducement_type" value="Cash"> Cash</label>
+                        <label><input type="checkbox" name="inducement_type" value="Food items"> Food items (e.g., rice, noodles, beverages)</label>
+                        <label><input type="checkbox" name="inducement_type" value="Clothing"> Clothing (e.g., T-shirts, caps)</label>
+                        <label><input type="checkbox" name="inducement_type" value="Employment promises"> Employment promises</label>
+                        <label><input type="checkbox" name="inducement_type" value="Household items"> Household items (e.g., detergent, cooking oil)</label>
+                        <label><input type="checkbox" name="inducement_type" value="Government contracts"> Government contracts or business opportunities</label>
+                    </div>
+                </div>
+
+                <!-- Question 12: Accepted Offer (now #11) -->
+                <div class="form-group">
+                    <label>11. Did you accept the offer?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="accepted_offer" value="Yes"> Yes</label>
+                        <label><input type="radio" name="accepted_offer" value="No"> No</label>
+                    </div>
+                </div>
+
+                <!-- Question 13: Cash Amount (now #12) -->
+                <div class="form-group">
+                    <label for="cash_amount">12. How much cash were you offered?</label>
+                    <select id="cash_amount" name="cash_amount">
+                        <option value="" disabled selected>Select an amount</option>
+                        <option value="1000-4999">₦1,000 – ₦4,999</option>
+                        <option value="5000-9999">₦5,000 – ₦9,999</option>
+                        <option value="10000-19999">₦10,000 – ₦19,999</option>
+                        <option value="20000+">₦20,000 and above</option>
+                    </select>
+                </div>
+
+                <!-- Question 14: Who Offered (now #13) -->
+                <div class="form-group">
+                    <label for="offered_by">13. Who offered you the inducement?</label>
+                    <select id="offered_by" name="offered_by">
+                        <option value="" disabled selected>Select the source</option>
+                        <option value="Party agents">Party agents</option>
+                        <option value="Community leaders">Community leaders</option>
+                        <option value="Candidates">Candidates</option>
+                        <option value="Government officials">Government officials</option>
+                        <option value="Friends/family members">Friends/family members</option>
+                        <option value="Party Members">Party Members</option>
+                    </select>
+                </div>
+
+                <!-- Question 15: Location (now #14) -->
+                <div class="form-group">
+                    <label for="location">14. Where did the inducement take place?</label>
+                    <select id="location" name="location">
+                        <option value="" disabled selected>Select the location</option>
+                        <option value="Polling unit">At the polling unit on election day</option>
+                        <option value="Rally">At a political rally or campaign event</option>
+                        <option value="Home/Community">At my home or community gathering</option>
+                        <option value="Communicated location">A certain communicated location</option>
+                    </select>
+                </div>
+
+                <!-- Question 16: Voted for Inducer (now #15) -->
+                <div id="conditional-vote-followup" class="form-group hidden">
+                    <label>15. Did you vote for the candidate or party that offered the inducement?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="voted_for_inducer" value="Yes"> Yes</label>
+                        <label><input type="radio" name="voted_for_inducer" value="No, voted for another"> No, I voted for another candidate</label>
+                        <label><input type="radio" name="voted_for_inducer" value="No, did not vote"> No, I did not vote at all</label>
+                    </div>
+                </div>
+
+            </div>
+            <!-- CONDITIONAL BLOCK ENDS HERE -->
+
+            <!-- Question 17: Reasons for Accepting (now #16) -->
+            <div class="form-group">
+                <label>16. In your opinion, why do people accept vote-buying? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="reasons[]" value="Economic hardship"> Economic hardship</label>
+                    <label><input type="checkbox" name="reasons[]" value="Lack of political awareness"> Lack of political awareness</label>
+                    <label><input type="checkbox" name="reasons[]" value="Distrust in electoral system"> Distrust in the electoral system</label>
+                    <label><input type="checkbox" name="reasons[]" value="Influence of community leaders"> Influence of community leaders</label>
+                    <label><input type="checkbox" name="reasons[]" value="Covetousness"> Covetousness</label>
+                    <label><input type="checkbox" name="reasons[]" value="High rate of unemployment"> High rate of unemployed youth</label>
+                    <label><input type="checkbox" name="reasons[]" value="Immediate gain (national cake)"> Seen as an immediate gain (their portion of the "National cake")</label>
+                    <label><input type="checkbox" name="reasons[]" value="Cultural norm"> It has become a cultural norm</label>
+                    <label>
+                        <input type="checkbox" id="other-reason-checkbox"> Other
+                    </label>
+                    <input type="text" id="other-reason-text" name="reasons_other" class="hidden" placeholder="Please specify your reason">
+                </div>
+            </div>
+
+            <!-- Question 18: Measures to Reduce (now #17) -->
+            <div class="form-group">
+                <label>17. What measures do you think can reduce vote-buying? (Select all that apply)</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="measures[]" value="Stricter enforcement"> Stricter enforcement of laws and penalties</label>
+                    <label><input type="checkbox" name="measures[]" value="Increased voter education"> Increased voter education</label>
+                    <label><input type="checkbox" name="measures[]" value="Better economic opportunities"> Better economic opportunities to reduce financial desperation</label>
+                    <label><input type="checkbox" name="measures[]" value="Campaign financing transparency"> Transparency in campaign financing</label>
+                    <label><input type="checkbox" name="measures[]" value="E-Voting"> E-Voting (e.g., voting on phones)</label>
+                    <label><input type="checkbox" name="measures[]" value="Politicians fulfilling promises"> Politicians should fulfill their campaign promises</label>
+                    <label><input type="checkbox" name="measures[]" value="Government sincerity"> Government sincerity to the people</label>
+                    <label>
+                        <input type="checkbox" id="other-measure-checkbox"> Other
+                    </label>
+                    <input type="text" id="other-measure-text" name="measures_other" class="hidden" placeholder="Please specify your suggestion">
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submit-button">Submit Survey</button>
+            <div id="status-message" class="hidden"></div>
+        </form>
+    </div>
+
+    <!-- JAVASCRIPT FOR CONDITIONAL LOGIC & SUBMISSION -->
+    <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz2oSyvmdLVSVj_OxCvYComSrwknaiYa6Q8h6pN9xLEdncC1iPdfFSPxtrU4OwIMeW7Ng/exec"; // Make sure your URL is here
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('surveyForm');
+            const submitButton = document.getElementById('submit-button');
+            const statusMessage = document.getElementById('status-message');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                
+                submitButton.disabled = true;
+                submitButton.textContent = 'Submitting...';
+
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: new FormData(form),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    statusMessage.classList.remove('hidden', 'status-error', 'status-success');
+                    if (data.result === 'success') {
+                        statusMessage.textContent = data.message;
+                        statusMessage.classList.add('status-success');
+                        form.reset(); 
+                    } else {
+                        throw new Error(data.message || 'Unknown error occurred.');
+                    }
+                })
+                .catch(error => {
+                    statusMessage.classList.remove('hidden', 'status-error', 'status-success');
+                    statusMessage.textContent = 'Submission failed: ' + error.message;
+                    statusMessage.classList.add('status-error');
+                })
+                .finally(() => {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit Survey';
+                });
+            });
+
+            const approachedRadios = document.querySelectorAll('input[name="approached"]');
+            const conditionalBlock = document.getElementById('conditional-block');
+
+            approachedRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    conditionalBlock.classList.toggle('hidden', this.value !== 'Yes');
+                });
+            });
+
+            const acceptedRadios = document.querySelectorAll('input[name="accepted_offer"]');
+            const voteFollowupBlock = document.getElementById('conditional-vote-followup');
+
+            acceptedRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    voteFollowupBlock.classList.toggle('hidden', this.value !== 'Yes');
+                });
+            });
+
+            function setupOtherField(checkboxId, textId) {
+                const checkbox = document.getElementById(checkboxId);
+                const textField = document.getElementById(textId);
+                checkbox.addEventListener('change', function() {
+                    textField.classList.toggle('hidden', !this.checked);
+                    if (this.checked) {
+                        textField.focus();
+                    } else {
+                        textField.value = '';
+                    }
+                });
+            }
+            
+            setupOtherField('other-reason-checkbox', 'other-reason-text');
+            setupOtherField('other-measure-checkbox', 'other-measure-text');
+        });
+    </script>
+
+</body>
+</html>
